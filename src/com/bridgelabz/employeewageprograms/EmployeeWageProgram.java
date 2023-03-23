@@ -4,21 +4,13 @@ public class EmployeeWageProgram {
 
 	public static void main(String[] args) {
 		
-		int IS_FULL_TIME = 1;
-	    double empCheck = Math.floor(Math.random() *10) % 2;
+		int employeewageperhour = 20;
+		  int fulldayhours = 8;
+		  int dailyemployeewage = employeewageperhour * fulldayhours ;
+		  System.out.println("Daily Employee wage will be " +dailyemployeewage);
+		}
 
-	  
-
-	    if (empCheck == IS_FULL_TIME)
-	    {
-	        System.out.println("Employee is Present");
-	    } 
-	    else 
-	    {
-	        System.out.println("Employee is Absent");
-	    }
 	}
-}
 
 
 
