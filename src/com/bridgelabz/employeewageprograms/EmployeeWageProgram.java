@@ -4,44 +4,38 @@ import java.util.Scanner;
 
 public class EmployeeWageProgram {
 
-	public static final int WAGE_PER_Hour = 20;
-	public static final int FULL_DAY_HOUR = 8;
-	public static final int PART_TIME_HOUR = 4;
-	public static final int WORKING_DAYS_PER_MONTH = 20;
-	public static int HOURS_WORKED;
-	public static int DAILY_WAGE = 0;
-	public static final int MONTHLY_WAGE = 0;
-
-	public static void emoloyeeWageComputation() {
-
-		Scanner sc = new Scanner(System.in);
-		int MONTHLY_WAGE = 0;
-
-		for (int i = 1; i <= WORKING_DAYS_PER_MONTH; i++) {
-			System.out.println("Enter the hours worked on day " + i + ": ");
-			HOURS_WORKED = sc.nextInt();
-
-			switch (HOURS_WORKED) {
-			case 8:
-				DAILY_WAGE = WAGE_PER_Hour * DAILY_WAGE;
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
+	public static int computeEmpwage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+		
+		//variables
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+		
+		//Computation
+		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
+			totalWorkingDays++;
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			switch (empCheck) {
+			case IS_PART_TIME:
+				empHrs = 4;
 				break;
-			case 4:
-				DAILY_WAGE = WAGE_PER_Hour * PART_TIME_HOUR;
+			case IS_FULL_TIME:
+				empHrs = 8;
 				break;
-			default:
-				System.out.println("Invalid hours worked");
-				break;
+				default:
+					empHrs = 8;
+					
 			}
-
-			MONTHLY_WAGE += DAILY_WAGE;
+			totalEmpHrs += empHrs;
+			System.out.println("Day#: " + totalWorkingDays + "Emp Hr: " +empHrs);
 		}
-
-		System.out.println("Monthly employee wage: $" + MONTHLY_WAGE);
-		sc.close();
+		int totalEmpwage = totalEmpHrs + empRatePerHour;
+		System.out.println("Total Emp wage for Company: " +company+" is: "+ totalEmpwage);
+		return totalEmpwage;
 	}
-
 	public static void main(String[] args) {
-
-		emoloyeeWageComputation();
+		computeEmpwage("DMart", 20, 2, 10);
+		computeEmpwage("Reliance", 10, 4, 20);
 	}
 }
+	
