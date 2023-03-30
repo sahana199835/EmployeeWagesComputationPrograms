@@ -1,55 +1,47 @@
 package com.bridgelabz.employeewageprograms;
 
 import java.util.Scanner;
+
 public class EmployeeWageProgram {
 
-	public static void main(String[] args) {
-		
-		 int wagePerHour = 20;
-	        int fullDayHour = 8;
-	        int partTimeHour = 4;
-	        int workingDaysPerMonth = 20;
-	        int maxWorkingDays = 20;
-	        int maxWorkingHours = 100;
+	public static final int WAGE_PER_Hour = 20;
+	public static final int FULL_DAY_HOUR = 8;
+	public static final int PART_TIME_HOUR = 4;
+	public static final int WORKING_DAYS_PER_MONTH = 20;
+	public static int HOURS_WORKED;
+	public static int DAILY_WAGE = 0;
+	public static final int MONTHLY_WAGE = 0;
 
-	        Scanner input = new Scanner(System.in);
-	        int hoursWorked;
-	        int dailyWage = 0;
-	        int monthlyWage = 0;
-	        int totalWorkingHours = 0;
-	        int totalWorkingDays = 0;
+	public static void emoloyeeWageComputation() {
 
-	        while (totalWorkingHours < maxWorkingHours && totalWorkingDays < maxWorkingDays){
-	            System.out.println("Enter the hours worked on day " + (totalWorkingDays + 1) + ": ");
-	            hoursWorked = input.nextInt();
+		Scanner sc = new Scanner(System.in);
+		int MONTHLY_WAGE = 0;
 
-	            switch(hoursWorked) {
-	                case 8:
-	                    dailyWage = wagePerHour * fullDayHour;
-	                    break;
-	                case 4:
-	                    dailyWage = wagePerHour * partTimeHour;
-	                    break;
-	                default:
-	                    System.out.println("Invalid hours worked");
-	                    break;
-	            }
+		for (int i = 1; i <= WORKING_DAYS_PER_MONTH; i++) {
+			System.out.println("Enter the hours worked on day " + i + ": ");
+			HOURS_WORKED = sc.nextInt();
 
-	            monthlyWage += dailyWage;
-	            totalWorkingHours += hoursWorked;
-	            totalWorkingDays++;
-	        }
+			switch (HOURS_WORKED) {
+			case 8:
+				DAILY_WAGE = WAGE_PER_Hour * DAILY_WAGE;
+				break;
+			case 4:
+				DAILY_WAGE = WAGE_PER_Hour * PART_TIME_HOUR;
+				break;
+			default:
+				System.out.println("Invalid hours worked");
+				break;
+			}
 
-	        System.out.println("Total employee wage: $" + monthlyWage);
-	        System.out.println("Total working hours: " + totalWorkingHours);
-	        System.out.println("Total working days: " + totalWorkingDays);
+			MONTHLY_WAGE += DAILY_WAGE;
+		}
 
-	        input.close();
+		System.out.println("Monthly employee wage: $" + MONTHLY_WAGE);
+		sc.close();
 	}
 
+	public static void main(String[] args) {
+
+		emoloyeeWageComputation();
+	}
 }
-
-        
-
-
-
